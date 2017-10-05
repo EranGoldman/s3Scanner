@@ -1,0 +1,3 @@
+cat buckets.txt > BucketNames.txt
+echo "" > buckets.txt
+python3 AWSBucketDump.py -l BucketNames.txt -g interesting_Keywords.txt -m 500000 -d 1

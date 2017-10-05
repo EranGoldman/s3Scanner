@@ -105,3 +105,6 @@ config.py
 
 # setup files
 setup.py
+BucketNames.txt
+buckets.txt
+interesting_file.txt

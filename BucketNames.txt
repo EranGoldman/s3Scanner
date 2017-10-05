@@ -1,4 +1,5 @@
-pepysdiary-production
-tpm-media
 cn-copilot-media
 blueprint-api-production
+tpm-media
+cn-copilot-media
+automate-prod
