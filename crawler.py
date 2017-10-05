@@ -134,9 +134,13 @@ def searchBuckets(soup,pageurl):
     rawtext = soup.get_text()
     regex = re.compile('https*://(\S*)\.s3.amazonaws.com')
     buckets =  re.findall(regex, rawtext)
-    buckets = set(buckets)
     # print ("buckets : ",buckets)
     if len(buckets) > 0 :
+        for i in range(len(buckets)):
+            b = buckets[i]
+            if b.rfind('//') >= 0:
+                buckets[i] = b[b.rfind('//')+2:]
+        buckets = set(buckets)
         with open("buckets.txt","a") as f:
             for b in buckets:
                 f.write(b)
