@@ -14,6 +14,7 @@ The scanner is based on three parts,
 
 - [Installation](#installation)
 - [setup](#setup)
+- [Execution](#execution)
 - [License](#license)
 - [Links](#links)
 
@@ -28,6 +29,7 @@ make
 sudo make install
 redis-server &
 ```
+
 2. Download and Install Flask
 ```
 sudo pip3 install flask
@@ -35,7 +37,31 @@ sudo pip3 install flask
 
 ## Setup
 
-TBD
+Edit the setup.py file with starting point
+```
+python3 setup.py
+```
+
+## Execution
+Each process is in different shell...
+
+1. Run the crawler in endless loop
+  The request module crash from time to time due to ssl3 issues etc...
+  I decided to just write a script to restart the python it's easier for this example
+  ```
+  ./endlessrun.sh
+  ```
+
+2. Run the s3Scanner -
+  Because the scanner is much faster than the crawler I use cron to run it every hour or so ...
+```
+./cron.job
+```
+
+3. Run the Flask server -
+```
+FLASK_APP=server.py flask run
+```
 
 ## License
 
