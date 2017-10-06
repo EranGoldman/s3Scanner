@@ -102,7 +102,7 @@ def write_interesting_file(filepath):
             interesting_file.write('\n'.encode('utf-8'))
     finally:
         release_interesting_file_lock()
-    
+
 
 
 def downloadFile(filename):
@@ -135,7 +135,7 @@ def print_banner():
 
         by Jordan Potti
         @ok_bye_now'''
-        )   
+        )
 
 
 def cleanUp():
@@ -179,9 +179,9 @@ def main():
     global arguments
     global grep_list
     parser = ArgumentParser()
-    parser.add_argument("-D", dest="download", required=False, action="store_true", default=False, help="Download files. This requires significant diskspace") 
+    parser.add_argument("-D", dest="download", required=False, action="store_true", default=False, help="Download files. This requires significant diskspace")
     parser.add_argument("-d", dest="savedir", required=False, default='', help="if -D, then -d 1 to create save directories for each bucket with results.")
-    parser.add_argument("-l", dest="hostlist", required=True, help="") 
+    parser.add_argument("-l", dest="hostlist", required=True, help="")
     parser.add_argument("-g", dest="grepwords", required=False, help="Provide a wordlist to grep for")
     parser.add_argument("-m", dest="maxsize", type=int, required=False, default=1024, help="Maximum file size to download.")
     parser.add_argument("-t", dest="threads", type=int, required=False, default=1, help="thread count.")
@@ -192,7 +192,7 @@ def main():
         parser.print_usage
         sys.exit()
 
-    
+
     # output parsed arguments into a usable object
     arguments = parser.parse_args()
 
@@ -214,8 +214,8 @@ def main():
         t = Thread(target=bucket_worker)
         t.daemon = True
         t.start()
-       
-    # start download workers 
+
+    # start download workers
     for i in range(1, arguments.threads):
         t = Thread(target=downloadWorker)
         t.daemon = True
@@ -223,6 +223,8 @@ def main():
 
     with open(arguments.hostlist) as f:
         for line in f:
+            if len(line.rstrip()) < 1:
+                continue
             bucket = 'https://'+line.rstrip()+'.s3.amazonaws.com'
             print('queuing {}'.format(bucket))
             bucket_q.put(bucket)
@@ -239,4 +241,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
