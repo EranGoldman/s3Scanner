@@ -1,1 +1,9 @@
 
+closeio-filepicker
+drivy-prod-static
+eleven-bg-ew
+evocloud-prod1-static
+production-au-h2
+production-de-h2
+production-sg-h2
+savedo-cms-assets-production
