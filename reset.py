@@ -1,6 +1,6 @@
 import redis
 
-FirstURL = "https://www.darknet.org.uk"
+FirstURL = "https://angel.co/companies/trending/new"
 
 r = redis.Redis(
     host='localhost',
