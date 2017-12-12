@@ -1,0 +1,11 @@
+sort buckets.txt -u > BucketNames.txt
+cat BucketNames.txt >> bucketslog.log
+echo "" > buckets.txt
+a=$(wc buckets.txt -l | cut -f1 -d" ")
+echo $a
+a=$((10#$a+0))
+if (($a > 0)); then
+  python3 AWSBucketDump.py -l BucketNames.txt -g interesting_Keywords.txt -m 500000 -d 1
+fi
+sort interesting_file.txt -u > tmp.tmp
+mv tmp.tmp interesting_file.txt
